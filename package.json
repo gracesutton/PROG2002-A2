@@ -1,0 +1,20 @@
+{
+  "name": "prog2002-a2",
+  "version": "1.0.0",
+  "description": "Charity events management website for the PROG2002 Web Development II unit assessment 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gracesutton/PROG2002-A2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gracesutton/PROG2002-A2/issues"
+  },
+  "homepage": "https://github.com/gracesutton/PROG2002-A2#readme"
+}
