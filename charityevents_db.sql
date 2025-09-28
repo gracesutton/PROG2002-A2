@@ -46,3 +46,8 @@ INSERT INTO Events (EventName, Description, EventDate, Location, OrganisationID,
 ('Charity Fashion Show', 'Showcasing local designers for a cause.', '2025-12-05', 'Pacific Fair Shopping Centre', 1, 2),
 ('Food Drive Gala Dinner', 'Help us fundraise for food packages.', '2025-11-30', 'JW Marriott Gold Coast', 1, 2),
 ('Vintage Auction', 'Collectible items auction for fundraising.', '2025-12-10', 'Gold Coast Convention Centre', 3, 3);
+
+SELECT * FROM Events;
+SELECT * FROM Categories;
+
+UPDATE Events SET EventDate = '2025-9-9' WHERE EventName = 'Vintage Auction'; 
