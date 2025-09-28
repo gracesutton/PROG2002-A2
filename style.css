@@ -21,3 +21,8 @@ body {
   width: 80%;
   /* max-width: 600px; */
 }
+
+.event {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
