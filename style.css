@@ -26,3 +26,39 @@ body {
   border-bottom: 1px solid #ccc;
   padding: 10px 0;
 }
+
+#event-page {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+#leftColumn {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#rightColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#orgDetailsDiv, #goal-progress-div {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#eventDetailsDiv {
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+
+#eventImageDiv img {
+  max-width: 100%;
+  display: block;
+  border: 1px solid #ccc;
+}

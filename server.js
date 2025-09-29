@@ -29,9 +29,14 @@ app.get("/",(req,res)=>{
   res.sendFile(path.join(__dirname,"index.html"));
 });
 
-//route to serve concert.html
-app.get("/concert",(req,res)=>{
-  res.sendFile(path.join(__dirname,"concert.html"));
+//route to serve search.html
+app.get("/search",(req,res)=>{
+  res.sendFile(path.join(__dirname,"search.html"));
+});
+
+//route to serve event.html
+app.get("/event",(req,res)=>{
+  res.sendFile(path.join(__dirname,"event.html"));
 });
 
 // route to fetch events

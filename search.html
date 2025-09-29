@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Search page</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<script>
+    // javascript can go here
+</script>
+
+<body>
+    <!-- Navigation Menu -->
+    <header class="navbar">
+        <h1>Gold Coast Charity Connect</h1>
+        <a href="/"><button>Home</button></a>
+        <a href="/search"><button>Search</button></a>
+    </header>
+
+
+    <h2>Search Events</h2>
+    <form id="searchForm" onsubmit="searchEvents(); return false;">
+        <label for="searchDate">Date:</label>
+        <input type="date" id="searchDate">
+
+        <label for="searchLocation">Location:</label>
+        <input type="text" id="searchLocation" placeholder="Enter a location">
+
+        <label for="searchCategory">Category:</label>
+        <select id="searchCategory">
+            <option value="">All categories</option>
+        </select>
+
+        <button type="submit">Search</button>
+        <button type="button" onclick="clearFilters()">Clear</button>
+
+    </form>
+
+    <section id="upcoming-events-box">
+        <div id="data"></div>
+    </section>
+
+    <img src="header.jpeg" width="100%">
+
+    <script>
+
+        // load categories into dropdown list
+        async function loadCategories() {
+            try {
+            const res = await fetch('/api/events/categories/list');
+            if (!res.ok) throw new Error('Failed to fetch categories');
+            const cats = await res.json();
+
+            const ddl = document.getElementById('searchCategory');
+            ddl.innerHTML = '<option value="">All categories</option>';
+            cats.forEach(cat => {
+                ddl.innerHTML += `<option value="${cat.CategoryID}">${cat.CategoryName}</option>`;
+            });
+            } catch (err) {
+            console.error('Error loading categories:', err);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadCategories);
+
+    </script>
+
+</body>
+
+</html>

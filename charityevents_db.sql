@@ -20,6 +20,9 @@ CREATE TABLE Events (
     Description varchar(255),
     EventDate date NOT NULL,
     Location varchar(255) NOT NULL,
+    TicketPrice decimal(10,2) DEFAULT 0,
+	GoalAmount decimal(10,2) DEFAULT 0,
+	CurrentProgress decimal(10,2) DEFAULT 0,
     OrganisationID int NOT NULL,
     CategoryID int NOT NULL,
     FOREIGN KEY (OrganisationID) REFERENCES Organisations(OrganisationID),
@@ -37,17 +40,17 @@ INSERT INTO Categories (CategoryName) VALUES
 ('Auction'),
 ('Community Fair');
 
-INSERT INTO Events (EventName, Description, EventDate, Location, OrganisationID, CategoryID) VALUES
-('5K Fun Run', 'Join us for a fun run to raise funds for local shelters.', '2025-10-10', 'Coolangatta', 1, 1),
-('Annual Charity Gala', 'An elegant evening to support conservation efforts.', '2025-11-15', 'Gold Coast Convention Centre', 2, 2),
-('Art Auction', 'Bid on local artwork and support kids education.', '2025-12-01', 'HOTA', 3, 3),
-('Spring Community Fair', 'Family-friendly fair with stalls and live music.', '2025-09-30', 'Burleigh Heads Public School', 1, 4),
-('Beach Clean-Up', 'Volunteer event to clean Gold Coast beaches.', '2025-10-20', 'Surfers Paradise Beach', 2, 1),
-('Charity Fashion Show', 'Showcasing local designers for a cause.', '2025-12-05', 'Pacific Fair Shopping Centre', 1, 2),
-('Food Drive Gala Dinner', 'Help us fundraise for food packages.', '2025-11-30', 'JW Marriott Gold Coast', 1, 2),
-('Vintage Auction', 'Collectible items auction for fundraising.', '2025-12-10', 'Gold Coast Convention Centre', 3, 3);
+INSERT INTO Events (EventName, Description, EventDate, Location, TicketPrice, GoalAmount, CurrentProgress, OrganisationID, CategoryID) VALUES
+('5K Fun Run', 'Join us for a fun run to raise funds for local shelters.', '2025-10-10', 'Coolangatta', 0.00, 5000, 2200, 1, 1),
+('Annual Charity Gala', 'An elegant evening to support conservation efforts.', '2025-11-15', 'Gold Coast Convention Centre', 120.00, 20000, 7500, 2, 2),
+('Art Auction', 'Bid on local artwork and support kids education.', '2025-12-01', 'HOTA', 0.00, 8000, 3000, 3, 3),
+('Spring Community Fair', 'Family-friendly fair with stalls and live music.', '2025-09-30', 'Burleigh Heads Public School', 5.00, 3000, 1500, 1, 4),
+('Beach Clean-Up', 'Volunteer event to clean Gold Coast beaches.', '2025-10-20', 'Surfers Paradise Beach', 0.00, 1000, 500, 2, 1),
+('Charity Fashion Show', 'Showcasing local designers for a cause.', '2025-12-05', 'Pacific Fair Shopping Centre', 45.00, 7000, 3200, 1, 2),
+('Food Drive Gala Dinner', 'Help us fundraise for food packages.', '2025-09-20', 'JW Marriott Gold Coast', 60.00, 5000, 1200, 1, 2),
+('Vintage Auction', 'Collectible items auction for fundraising.', '2025-09-09', 'Gold Coast Convention Centre', 0.00, 4000, 1000, 3, 3);
 
-SELECT * FROM Events;
-SELECT * FROM Categories;
+-- SELECT * FROM Events;
+-- SELECT * FROM Categories;
 
-UPDATE Events SET EventDate = '2025-9-9' WHERE EventName = 'Vintage Auction'; 
+-- DROP DATABASE charityevents_db;

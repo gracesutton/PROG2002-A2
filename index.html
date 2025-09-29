@@ -56,7 +56,7 @@
               const eventDiv = document.createElement('div');
               eventDiv.className = 'event';
               eventDiv.innerHTML = `
-                <h3>${event.EventName}</h3>
+                <h3><a href="/event?id=${event.EventID}">${event.EventName}</a></h3>
                 <p>${event.Description}</p>
                 <p>Date: ${new Date(event.EventDate).toLocaleDateString()}</p>
                 <p>Location: ${event.Location}</p>
@@ -79,6 +79,8 @@
         });
 
     </script>
+
+    
 
   </body>
 </html>
