@@ -26,6 +26,49 @@ router.get('/categories/list', (req, res) => {
     });
 });
 
+// SEARCH events by date, location, and category
+router.get('/search', (req, res) => {
+  const { date, location, categoryId } = req.query;
+
+  let sql = `
+    SELECT e.EventID, e.EventName, e.Description, e.EventDate, e.Location,
+           c.CategoryName, o.OrganisationName
+    FROM Events e
+    JOIN Categories c ON e.CategoryID = c.CategoryID
+    JOIN Organisations o ON e.OrganisationID = o.OrganisationID
+    WHERE 1=1
+  `;
+
+  const params = [];
+
+  if (date) {
+    sql += " AND e.EventDate = ?";
+    params.push(date);
+  }
+
+  if (location) {
+    sql += " AND LOWER(e.Location) LIKE ?";
+    params.push(`%${location}%`);
+  }
+
+  if (categoryId) {
+    sql += " AND e.CategoryID = ?";
+    params.push(categoryId);
+  }
+
+  console.log("Running SQL:", sql);
+  console.log("With params:", params);
+
+  connection.query(sql, params, (err, results) => {
+    if (err) {
+      console.error('Error performing search:', err);
+      return res.status(500).json({ error: 'Database query failed' });
+    }
+    console.log("Search results:", results);
+    res.json(results);
+  });
+});
+
 
 // READ single event by ID
 router.get('/:id', (req, res) => {
@@ -48,8 +91,6 @@ router.get('/:id', (req, res) => {
     }
   });
 });
-
-
 
 // export the router
 module.exports = router;

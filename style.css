@@ -1,11 +1,42 @@
-header {
+.hero {
+  position: relative;
   text-align: center;
-  margin-bottom: 20px;
 }
 
-/* .navbar button {
-    
-} */
+.hero img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  filter: brightness(70%); /* darken image slightly for readability */
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.hero-overlay h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.nav-buttons button {
+  background-color: #ffaa00;
+  color: white;
+  border: none;
+  margin: 0 8px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav-buttons button:hover {
+  background-color: #df9500;
+}
 
 body {
   font-family: Arial, sans-serif;
@@ -15,7 +46,7 @@ body {
 
 /* Box styles */
 #upcoming-events-box, #past-events-box {
-  border: 1px solid #ff0000;
+  /* border: 1px solid #ff0000; */
   padding: 15px;
   margin: 20px auto;
   width: 80%;
@@ -62,3 +93,36 @@ body {
   display: block;
   border: 1px solid #ccc;
 }
+
+.event {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 1rem auto;
+  max-width: 600px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h2, h3, h4 {
+  text-decoration: none;
+  color: #ffaa00;
+}
+
+h3 a:hover, a:visited {
+  text-decoration: underline;
+  color: #df9500;
+}
+
+a:visited {
+  text-decoration: underline;
+  color: #df6100;
+}
+
+/* #ffaa00; #df9500 */
