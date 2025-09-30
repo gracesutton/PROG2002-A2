@@ -45,7 +45,7 @@ router.get('/search', (req, res) => {
     WHERE 1=1
   `;
 
-  // build URL query string
+  // build sql query with search filters as parameters
   const params = [];
 
   if (date) {
@@ -55,7 +55,7 @@ router.get('/search', (req, res) => {
 
   if (location) {
     sql += " AND LOWER(e.Location) LIKE ?";
-    params.push(`%${location}%`);
+    params.push(`%${location}%`); // wildcard search, i.e. doesnt have to be full word
   }
 
   if (categoryId) {
@@ -69,6 +69,7 @@ router.get('/search', (req, res) => {
       return res.status(500).json({ error: 'Database query failed' });
     }
     res.json(results);
+  
   });
 });
 

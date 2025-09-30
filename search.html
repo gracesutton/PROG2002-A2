@@ -5,10 +5,6 @@
     <title>Search page</title>
     <link rel="stylesheet" href="style.css" />
 </head>
-<script>
-    // javascript can go here
-</script>
-
 <body>
     <!-- Banner & Navigation Menu -->
     <header class="hero">
@@ -24,6 +20,8 @@
 
     <br><br>
     <h2>Search Events</h2>
+
+    <!-- Search Events Form -->
     <form id="searchForm" onsubmit="searchEvents(); return false;">
         <label for="searchDate">Date:</label>
         <input type="date" id="searchDate">
@@ -40,15 +38,14 @@
 
         <button type="submit">Go</button>
         <button type="button" onclick="clearFilters()">Clear</button>
-
     </form>
 
+    <!-- Events display -->
     <section id="upcoming-events-box">
         <div id="data"></div>
     </section>
 
     <script>
-
         // load categories into dropdown list
         async function loadCategories() {
             try {
