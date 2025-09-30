@@ -16,11 +16,11 @@ Gold Coast Charity Connect is a dynamic web app that centralises charity events 
 
 ### Installing
 
-Clone or download the project files.
-Run ```npm install``` to install dependencies.
-Set up a MySQL database called ```charityevents_db```.
-Import the provided schema SQL file.
-Update the database credentials in ```event_db.js``` if required.
+1. Clone or download the project files.
+2. Run ```npm install``` to install dependencies.
+3. Set up a MySQL database called ```charityevents_db```.
+4. Import the provided schema SQL file.
+5. Update the database credentials in ```event_db.js``` if required.
 
 ### Executing program
 
