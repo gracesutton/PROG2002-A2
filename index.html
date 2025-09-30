@@ -8,10 +8,9 @@
     // javascript can go here
   </script>
   <body>
-    <!-- <img src="header0.jpeg" width="100%"> -->
-    <!-- Navigation Menu -->
+    <!-- Banner & Navigation Menu -->
     <header class="hero">
-      <img src="header.jpeg" alt="Gold Coast Charity Connect Banner">
+      <img src="images/header.jpeg" alt="Gold Coast Charity Connect Banner">
       <div class="hero-overlay">
         <h1>Gold Coast Charity Connect</h1>
         <div class="nav-buttons">
@@ -21,21 +20,21 @@
       </div>
     </header>
 
-    <p>Hi, and welcome to Gold Coast Charity Connect! The one place to find out about local charity events in our area.</p>
-    <p>Click on an event to learn more and register!</p>
-
- 
+    <section id="msg">
+      <p>Hi, and welcome to Gold Coast Charity Connect! The one place to find out about local charity events in our area.</p>
+      <p>Click on an event to learn more and register!</p>
+    </section>
 
     <!-- Upcoming Events -->
     <h2>Upcoming Events</h2>
     <section id="upcoming-events-box">
-         <div id="upcomingEventsDiv"></div>
+         <div id="upcomingEventsDiv">
     </section>
 
     <!-- Past Events -->
     <h2>Past Events</h2>
     <section id="past-events-box">
-        <div id="pastEventsDiv"></div>
+        <div id="pastEventsDiv">
     </section>
 
 
@@ -45,28 +44,45 @@
         .then(response => response.json())
         .then(data => {
 
+          // clear existing content
           const upcomingEventsDiv = document.getElementById('upcomingEventsDiv');
           const pastEventsDiv = document.getElementById('pastEventsDiv');
           upcomingEventsDiv.innerHTML = "";
           pastEventsDiv.innerHTML = "";
 
+          // get today's date at midnight
           const today = new Date();
           today.setHours(0,0,0,0); // normalise to midnight
 
           if(data.length>0) {
             data.forEach(event => {
 
+              // normalise event date to midnight for comparison
               const eventDate = new Date(event.EventDate);
               eventDate.setHours(0,0,0,0);
 
+              // creat event wrapper
               const eventDiv = document.createElement('div');
               eventDiv.className = 'event';
-              eventDiv.innerHTML = `
+
+              // add category image
+              const img = document.createElement('img');
+              img.src = event.CategoryImage;
+              img.className = 'category-image';
+              eventDiv.appendChild(img);
+
+              // add event details
+              const eventDetails = document.createElement('div');
+              eventDetails.className = 'event-details';
+              eventDetails.innerHTML = `
                 <h3><a href="/event?id=${event.EventID}">${event.EventName}</a></h3>
                 <p>${event.Description}</p>
                 <p>Date: ${new Date(event.EventDate).toLocaleDateString()}</p>
                 <p>Location: ${event.Location}</p>
               `;
+              eventDiv.appendChild(eventDetails);
+              
+              // append to upcoming or past section
               if (eventDate >= today) {
                 upcomingEventsDiv.appendChild(eventDiv);
               } else {

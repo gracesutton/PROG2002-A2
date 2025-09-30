@@ -4,9 +4,15 @@ const connection = require('../event_db.js');
 const e = require('express');
 const router = express.Router();
 
-// READ all events
+// READ all events with images from categories
 router.get('/', (req, res) => {
-  connection.query('SELECT * FROM Events', (err, results) => {
+  const sql = `
+    SELECT e.EventID, e.EventName, e.Description, e.EventDate, e.Location,
+           c.CategoryName, c.CategoryImage
+    FROM Events e
+    JOIN Categories c ON e.CategoryID = c.CategoryID
+  `;
+  connection.query(sql, (err, results) => {
     if (err) {
       console.error('Error retrieving events:', err);
     } else {
@@ -32,13 +38,14 @@ router.get('/search', (req, res) => {
 
   let sql = `
     SELECT e.EventID, e.EventName, e.Description, e.EventDate, e.Location,
-           c.CategoryName, o.OrganisationName
+           c.CategoryName, c.CategoryImage, o.OrganisationName
     FROM Events e
     JOIN Categories c ON e.CategoryID = c.CategoryID
     JOIN Organisations o ON e.OrganisationID = o.OrganisationID
     WHERE 1=1
   `;
 
+  // build URL query string
   const params = [];
 
   if (date) {
@@ -56,15 +63,11 @@ router.get('/search', (req, res) => {
     params.push(categoryId);
   }
 
-  console.log("Running SQL:", sql);
-  console.log("With params:", params);
-
   connection.query(sql, params, (err, results) => {
     if (err) {
       console.error('Error performing search:', err);
       return res.status(500).json({ error: 'Database query failed' });
     }
-    console.log("Search results:", results);
     res.json(results);
   });
 });
@@ -75,7 +78,7 @@ router.get('/:id', (req, res) => {
   const sql = `
     SELECT e.EventID, e.EventName, e.Description, e.EventDate, e.Location,
            e.TicketPrice, e.GoalAmount, e.CurrentProgress,
-           c.CategoryName,
+           c.CategoryName, c.CategoryImage,
            o.OrganisationName, o.OrganisationDescription, o.Website, o.Phone
     FROM Events e
     JOIN Categories c ON e.CategoryID = c.CategoryID

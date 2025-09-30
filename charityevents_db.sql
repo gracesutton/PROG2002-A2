@@ -4,14 +4,15 @@ USE charityevents_db;
 CREATE TABLE Organisations (
 	OrganisationID int AUTO_INCREMENT PRIMARY KEY,
     OrganisationName varchar(255) NOT NULL,
-    Description varchar(255),
+    OrganisationDescription varchar(255),
     Website varchar(255),
     Phone varchar(15)
 );
 
 CREATE TABLE Categories (
 	CategoryID int AUTO_INCREMENT PRIMARY KEY,
-    CategoryName varchar(50) NOT NULL
+    CategoryName varchar(50) NOT NULL,
+    CategoryImage VARCHAR(255)
 );
 
 CREATE TABLE Events (
@@ -35,10 +36,10 @@ INSERT INTO Organisations (OrganisationName, Description, Website, Phone) VALUES
 ('Hope for Kids', 'Supports education programs for underprivileged children', 'https://hopeforkids.org', '(07) 5523 1234');
 
 INSERT INTO Categories (CategoryName) VALUES
-('Fun Run'),
-('Charity Gala'),
-('Auction'),
-('Community Fair');
+('Fun Run', 'images/fun-run.jpg'),
+('Charity Gala', 'images/gala.jpg'),
+('Auction', 'images/auction.jpg'),
+('Community Fair', 'images/fair.jpg');
 
 INSERT INTO Events (EventName, Description, EventDate, Location, TicketPrice, GoalAmount, CurrentProgress, OrganisationID, CategoryID) VALUES
 ('5K Fun Run', 'Join us for a fun run to raise funds for local shelters.', '2025-10-10', 'Coolangatta', 0.00, 5000, 2200, 1, 1),
@@ -50,7 +51,4 @@ INSERT INTO Events (EventName, Description, EventDate, Location, TicketPrice, Go
 ('Food Drive Gala Dinner', 'Help us fundraise for food packages.', '2025-09-20', 'JW Marriott Gold Coast', 60.00, 5000, 1200, 1, 2),
 ('Vintage Auction', 'Collectible items auction for fundraising.', '2025-09-09', 'Gold Coast Convention Centre', 0.00, 4000, 1000, 3, 3);
 
--- SELECT * FROM Events;
--- SELECT * FROM Categories;
 
--- DROP DATABASE charityevents_db;

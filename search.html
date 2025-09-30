@@ -10,14 +10,19 @@
 </script>
 
 <body>
-    <!-- Navigation Menu -->
-    <header class="navbar">
+    <!-- Banner & Navigation Menu -->
+    <header class="hero">
+      <img src="images/header.jpeg" alt="Gold Coast Charity Connect Banner">
+      <div class="hero-overlay">
         <h1>Gold Coast Charity Connect</h1>
-        <a href="/"><button>Home</button></a>
-        <a href="/search"><button>Search</button></a>
+        <div class="nav-buttons">
+          <a href="/"><button>Home</button></a>
+          <a href="/search"><button>Search</button></a>
+        </div>
+      </div>
     </header>
 
-
+    <br><br>
     <h2>Search Events</h2>
     <form id="searchForm" onsubmit="searchEvents(); return false;">
         <label for="searchDate">Date:</label>
@@ -30,6 +35,8 @@
         <select id="searchCategory">
             <option value="">All categories</option>
         </select>
+        
+        <br><br>
 
         <button type="submit">Go</button>
         <button type="button" onclick="clearFilters()">Clear</button>
@@ -39,8 +46,6 @@
     <section id="upcoming-events-box">
         <div id="data"></div>
     </section>
-
-    <img src="header.jpeg" width="100%">
 
     <script>
 
@@ -88,11 +93,22 @@
                     data.forEach(event => {
                         const eventDiv = document.createElement('div');
                         eventDiv.className = 'event';
-                        eventDiv.innerHTML = `
-                            <h3>${event.EventName}</h3>
+
+                        // add category image
+                        const img = document.createElement('img');
+                        img.src = event.CategoryImage;
+                        img.className = 'category-image';
+                        eventDiv.appendChild(img);
+
+                        // add event details
+                        const eventDetails = document.createElement('div');
+                        eventDetails.className = 'event-details';
+                        eventDetails.innerHTML = `
+                            <h3><a href="/event?id=${event.EventID}">${event.EventName}</a></h3>
                             <p>${event.Description}</p>
                             <p>Date: ${new Date(event.EventDate).toLocaleDateString()}</p>
                             <p>Location: ${event.Location}</p>`;
+                        eventDiv.appendChild(eventDetails);
                         dataDiv.appendChild(eventDiv);
                     });
                 } else {
